@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { Order } from '../../core/models/order.model';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { adapter as usersAdapter, UsersState } from '../users/users.reducer';
 import { adapter as ordersAdapter, OrdersState } from './orders.reducer';
@@ -40,7 +41,7 @@ describe('Orders Selectors', () => {
   it('selectOrdersForSelectedUser should return only orders for user 1', (done) => {
     store.select(selectOrdersForSelectedUser).subscribe((orders) => {
       expect(orders.length).toBe(2);
-      expect(orders.every((o) => o.userId === 1)).toBeTrue();
+      expect(orders.every((o: Order) => o.userId === 1)).toBeTrue();
       done();
     });
   });
